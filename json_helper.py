@@ -1,4 +1,5 @@
 import json, os, pickle
+from typing import final
 
 def read_json(path):
     with open(path) as f:
@@ -34,15 +35,18 @@ def write_pickle(path):
         #contents of the path. Realized I'm dumping the path instead of the values in the path. Need to call read_all_json_files to add contents
 
 def load_pickle(path_to_load): 
+    finalOutput = ''
     with open(path_to_load, 'rb') as f:
         output = pickle.load(f)
         for line in output:
             print(str(line) + '\n')
+            finalOutput += str(line)
+    return finalOutput
         
 
 
 
-write_pickle('/Users/sean/labs/PyPart9/data/super_smash_bros copy')
+#write_pickle('/Users/sean/labs/PyPart9/data/super_smash_bros copy')
 load_pickle('/Users/sean/labs/PyPart9/**super_smash_characters.pickle**')
 #print(read_json('/Users/sean/labs/PyPart9/data/super_smash_bros/link copy 3.json'))
 

@@ -1,9 +1,12 @@
+import json
 from unittest import TestCase
-import json_helper, pickle, sys, StringIO
-import filecmp, 
+
+import json_helper, pickle
 
 
-#python -m unittest json_helper_tests
+
+
+# python3 -m unittest json_helper_test
 class Test_Json_Helper(TestCase):
 
     def test_read_json(self):
@@ -15,6 +18,8 @@ class Test_Json_Helper(TestCase):
         "up_special": "Super Jump Punch",
         "down_special": "F.L.U.D.D.",
         "final_smash": "Mario Finale"
+
+    
         }
         self.assertEqual(result, valueDict)
     
@@ -46,10 +51,13 @@ class Test_Json_Helper(TestCase):
         json_helper.write_pickle('/Users/sean/labs/PyPart9/data/super_smash_bros copy')
         with open('/Users/sean/labs/PyPart9/**super_smash_characters.pickle**', 'rb') as f:
            a = pickle.load(f)
-        print(a)
+        #print(a)
         self.assertEqual(expected, a)
 
 
     def test_load_pickle(self):
-
+        actual = json_helper.load_pickle('/Users/sean/labs/PyPart9/**super_smash_characters.pickle**')
+        expected = str({'name': 'Mario', 'final_smash': 'Mario Finale', 'down_special': 'F.L.U.D.D.', 'side_special': 'Cape', 'up_special': 'Super Jump Punch', 'neutral_special': 'Fireball'})
+        self.assertEqual(actual, expected)
+        
 
